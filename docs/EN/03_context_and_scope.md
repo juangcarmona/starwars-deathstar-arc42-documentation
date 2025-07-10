@@ -13,36 +13,30 @@ The Death Star interacts with multiple external systems and entities, each fulfi
 
 ### Business Context Diagram
 
-```plantuml
-@startuml
-!include <C4/C4_Context>
-LAYOUT_LEFT_RIGHT()
+```mermaid
+%% Death Star Business Context Diagram
+graph TD
+    subgraph Galactic_Empire ["Galactic Empire"]
+        deathstar["Death Star<br><i>Ultimate weapon and mobile space station</i>"]
+    end
 
-title Death Star Business Context Diagram
+    emperor["Emperor Palpatine<br><i>Supreme leader of the Galactic Empire</i>"]
+    imperial_command["Imperial Command<br><i>Strategic objectives and decisions</i>"]
+    imperial_fleet["Imperial Fleet<br><i>Star Destroyers and support vessels</i>"]
+    ground_troops["Imperial Ground Forces<br><i>Stormtroopers and military units</i>"]
+    planetary_gov["Planetary Governors<br><i>Regional administrators</i>"]
+    rebel_alliance["Rebel Alliance<br><i>Resistance movement</i>"]
+    trade_federation["Trade Federation<br><i>Imperial-controlled economic entities</i>"]
 
-Person(emperor, "Emperor Palpatine", "Supreme leader of the Galactic Empire")
-System_Boundary(empire, "Galactic Empire") {
-    System(deathstar, "Death Star", "Ultimate weapon and mobile space station capable of destroying planets")
-}
+    emperor -->|Commands| deathstar
+    imperial_command -->|Strategic directives<br><i>Secure channels</i>| deathstar
+    deathstar -->|Coordinates operations<br><i>Tactical network</i>| imperial_fleet
+    deathstar -->|Deployment orders<br><i>Military channels</i>| ground_troops
+    deathstar -->|Enforces compliance<br><i>Admin interface</i>| planetary_gov
+    planetary_gov -->|Intelligence reports<br><i>Surveillance data</i>| deathstar
+    deathstar -->|Suppresses<br><i>Military action</i>| rebel_alliance
+    deathstar -->|Controls<br><i>Economic directives</i>| trade_federation
 
-System_Ext(imperial_command, "Imperial Command", "Central command structure providing strategic objectives and tactical decisions")
-System_Ext(imperial_fleet, "Imperial Fleet", "Star Destroyers and support vessels providing escort and tactical support")
-System_Ext(ground_troops, "Imperial Ground Forces", "Stormtroopers and military units for planetary operations")
-System_Ext(planetary_gov, "Planetary Governors", "Regional administrators managing Imperial territories")
-System_Ext(rebel_alliance, "Rebel Alliance", "Resistance movement opposing Imperial rule")
-System_Ext(trade_federation, "Trade Federation", "Economic entities under Imperial control")
-
-Rel(emperor, deathstar, "Commands", "Direct orders")
-Rel(imperial_command, deathstar, "Strategic directives", "Secure channels")
-Rel(deathstar, imperial_fleet, "Coordinates operations", "Tactical network")
-Rel(deathstar, ground_troops, "Deployment orders", "Military channels")
-Rel(deathstar, planetary_gov, "Enforces compliance", "Administrative interface")
-Rel_Back(planetary_gov, deathstar, "Intelligence reports", "Surveillance data")
-Rel(deathstar, rebel_alliance, "Suppresses", "Military action")
-Rel(deathstar, trade_federation, "Controls", "Economic directives")
-
-SHOW_LEGEND()
-@enduml
 ```
 
 The diagram illustrates the high-level business interactions between the Death Star and key stakeholders in the Galactic Empire. The Death Star serves as the central enforcement mechanism for Imperial power, receiving strategic direction from the Emperor and Imperial Command while coordinating with various Imperial forces and governing bodies.
@@ -56,49 +50,53 @@ The technical context focuses on the interfaces, protocols, and communication ch
 
 ### Technical Context Diagram
 
-```plantuml
-@startuml
-!include <C4/C4_Container>
-LAYOUT_TOP_DOWN()
+```mermaid
+%% Death Star Technical Context Diagram – Ordered to match PlantUML LAYOUT_TOP_DOWN
+graph TD
+    %% Top layer: external actor
+    imperial_command["Imperial Command<br><i>Strategic command providing mission objectives</i>"]
 
-title Death Star Technical Context Diagram
+    %% Second layer: communication entry point
+    comm_system["Communications<br><i>Encrypted channels</i><br>Secure communication with Imperial forces"]
 
-Person(imperial_command, "Imperial Command", "Strategic command providing mission objectives")
+    imperial_command -->|Strategic orders<br><i>Encrypted hyperspace comm</i>| comm_system
 
-System_Boundary(deathstar_system, "Death Star System") {
-    Container(command_center, "Command Center", "Imperial OS", "Central command and control system")
-    Container(weapon_control, "Superlaser Control", "Real-time control system", "Targeting and firing control for the main weapon")
-    Container(shield_generator, "Shield Generator", "Electromagnetic systems", "Planetary-scale defensive shields")
-    Container(sensor_array, "Sensor Array", "Advanced detection systems", "Long-range space monitoring and planetary scanning")
-    Container(comm_system, "Communications", "Encrypted channels", "Secure communication with Imperial forces")
-    Container(power_core, "Main Reactor", "Hypermatter reactor", "Massive power generation for all systems")
-    Container(life_support, "Life Support", "Environmental control", "Atmosphere and gravity systems")
-    Container(docking_bays, "Docking Bays", "Ship management", "Fighter and transport vessel management")
-}
+    %% Death Star System boundary
+    subgraph Death_Star_System["Death Star System"]
+        command_center["Command Center<br><i>Imperial OS</i><br>Central command and control system"]
+        weapon_control["Superlaser Control<br><i>Real-time control system</i><br>Targeting and firing"]
+        shield_generator["Shield Generator<br><i>Electromagnetic systems</i><br>Planetary shields"]
+        sensor_array["Sensor Array<br><i>Advanced detection systems</i><br>Space and planetary scans"]
+        power_core["Main Reactor<br><i>Hypermatter reactor</i><br>Power generation"]
+        life_support["Life Support<br><i>Environmental control</i><br>Atmosphere and gravity"]
+        docking_bays["Docking Bays<br><i>Ship management</i><br>Fighter and transport ops"]
+    end
 
-System_Ext(imperial_network, "Imperial Network", "Galactic communication infrastructure")
-System_Ext(star_destroyers, "Star Destroyer Fleet", "Support vessels with tactical systems")
-System_Ext(tie_fighters, "TIE Fighter Squadron", "Fighter craft with basic comm systems")
-System_Ext(planetary_sensors, "Planetary Sensor Networks", "Ground-based detection systems")
-System_Ext(hyperspace_beacons, "Hyperspace Beacon Network", "Navigation infrastructure")
+    comm_system -->|Mission data<br><i>Internal secure channels</i>| command_center
 
-Rel(imperial_command, comm_system, "Strategic orders", "Encrypted hyperspace comm")
-Rel(comm_system, command_center, "Mission data", "Internal secure channels")
-Rel(command_center, weapon_control, "Targeting commands", "High-priority control bus")
-Rel(command_center, sensor_array, "Scan requests", "Sensor control protocol")
-Rel(command_center, shield_generator, "Shield commands", "Defense control protocol")
-Rel(power_core, weapon_control, "Massive power feed", "Primary power conduits")
-Rel(power_core, shield_generator, "Shield power", "Secondary power grid")
-Rel(power_core, sensor_array, "Sensor power", "Auxiliary power lines")
-Rel(power_core, life_support, "Environmental power", "Life support grid")
-Rel(sensor_array, imperial_network, "Intelligence data", "Burst transmission")
-Rel(comm_system, star_destroyers, "Fleet coordination", "Military comm protocols")
-Rel(docking_bays, tie_fighters, "Fighter deployment", "Launch control systems")
-Rel(sensor_array, planetary_sensors, "Sensor fusion", "Data correlation protocols")
-Rel(comm_system, hyperspace_beacons, "Navigation sync", "Hyperspace positioning")
+    command_center -->|Targeting commands<br><i>High-priority control bus</i>| weapon_control
+    command_center -->|Scan requests<br><i>Sensor control protocol</i>| sensor_array
+    command_center -->|Shield commands<br><i>Defense control protocol</i>| shield_generator
 
-SHOW_LEGEND()
-@enduml
+    power_core -->|Massive power feed<br><i>Primary power conduits</i>| weapon_control
+    power_core -->|Shield power<br><i>Secondary power grid</i>| shield_generator
+    power_core -->|Sensor power<br><i>Auxiliary power lines</i>| sensor_array
+    power_core -->|Environmental power<br><i>Life support grid</i>| life_support
+
+    %% External systems around the bottom layer
+    imperial_network["Imperial Network<br><i>Galactic communication infrastructure</i>"]
+    star_destroyers["Star Destroyer Fleet<br><i>Tactical support vessels</i>"]
+    tie_fighters["TIE Fighter Squadron<br><i>Fighter craft</i>"]
+    planetary_sensors["Planetary Sensor Networks<br><i>Ground-based detection</i>"]
+    hyperspace_beacons["Hyperspace Beacon Network<br><i>Navigation infrastructure</i>"]
+
+    sensor_array -->|Intelligence data<br><i>Burst transmission</i>| imperial_network
+    comm_system -->|Fleet coordination<br><i>Military comm protocols</i>| star_destroyers
+    comm_system -->|Navigation sync<br><i>Hyperspace positioning</i>| hyperspace_beacons
+    docking_bays -->|Fighter deployment<br><i>Launch control systems</i>| tie_fighters
+    sensor_array -->|Sensor fusion<br><i>Data correlation protocols</i>| planetary_sensors
+
+
 ```
 
 The technical context diagram shows the Death Star's internal systems and their interactions with external technical infrastructure. The massive power core feeds energy to all major systems, while the command center orchestrates operations. The communications system serves as the primary interface with the Imperial network and supporting forces.
