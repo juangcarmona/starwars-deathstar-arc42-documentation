@@ -19,9 +19,32 @@ The Building Block View provides a static decomposition of the Death Star system
    - *Atmosphere Regulation*: Controls oxygen and other atmospheric conditions.
    - *Emergency Protocols*: Activates in the event of onboard hazards.
 
-## Diagrams
+## Building Block Diagram
 
-> **TODO:** _(Include a hierarchical diagram that displays these top-level components and their subcomponents to give a visual representation of the Death Star’s architecture.)_
+The following diagram shows the hierarchical decomposition of the Death Star into its main building blocks and their subcomponents.
+
+```mermaid
+graph TD
+    Death_Star["Death Star"]
+
+    Death_Star --> Superlaser["Superlaser Weapon System"]
+    Superlaser --> Targeting_Module["Targeting Module"]
+    Superlaser --> Energy_Amplifier["Energy Amplifier"]
+
+    Death_Star --> Reactor_Core["Reactor Core"]
+    Reactor_Core --> Power_Distribution["Power Distribution Unit"]
+    Reactor_Core --> Cooling_System["Cooling System"]
+
+    Death_Star --> Command_Control["Command and Control"]
+    Command_Control --> Communication_Array["Communication Array"]
+    Command_Control --> Control_Center["Control Center"]
+
+    Death_Star --> Life_Support["Life Support System"]
+    Life_Support --> Atmosphere_Regulation["Atmosphere Regulation"]
+    Life_Support --> Emergency_Protocols["Emergency Protocols"]
+
+```
+
 
 ## Motivation
 

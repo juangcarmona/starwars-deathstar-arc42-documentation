@@ -22,16 +22,44 @@ This section outlines known risks and technical debt within the Death Star archi
    - **Description**: With multiple subsystems operating simultaneously, data synchronization challenges could lead to discrepancies that impact decision-making.
    - **Mitigation**: Regularly test data synchronization protocols and employ redundancy mechanisms to ensure data integrity across systems.
 
+### Risk Summary Table
+| ID | Risk Title                             | Impact Level | Affected Systems          | Mitigation Strategy                         |
+| -- | -------------------------------------- | ------------ | ------------------------- | ------------------------------------------- |
+| R1 | Reactor Core Vulnerability             | 🔴 Critical  | Reactor Core              | Enhanced shielding and compartmentalization |
+| R2 | Potential for Unauthorized Access      | 🟠 High      | Security Systems          | Regular audits and real-time monitoring     |
+| R3 | System Overload During High-Energy Ops | 🟠 High      | Power Distribution System | Power prioritization protocol               |
+| R4 | Data Synchronization Issues            | 🟡 Medium    | Data Services             | Regular testing and redundancy mechanisms   |
+
+
+
 ## Technical Debt
 
-1. **Legacy Components**: Some subsystems are based on older technology, complicating integration with newer modules and potentially impacting performance.
-2. **Documentation Gaps**: Incomplete documentation in certain areas makes system updates and troubleshooting more challenging for engineering teams.
-3. **Inflexible Architecture**: The rigid structure of some modules limits the ability to modify or expand certain capabilities without major redesigns.
+The following structural areas of technical debt have been identified:
 
-## Diagram
+| ID  | Category                  | Description                                                              | Impact Level | Suggested Action                         |
+|-----|--------------------------|--------------------------------------------------------------------------|--------------|------------------------------------------|
+| TD1 | Legacy Components        | Older subsystems complicate integration and degrade performance          | 🟠 High      | Plan phased refactoring and replacement  |
+| TD2 | Documentation Gaps       | Incomplete or outdated documentation slows maintenance and onboarding    | 🟡 Medium    | Establish documentation review cycles    |
+| TD3 | Inflexible Architecture  | Rigid module structures limit scalability and adaptability               | 🟠 High      | Redesign critical modules for modularity |
 
-> **TODO:** _(Include a table or diagram summarizing the risks, their potential impact, and mitigation strategies.)_
+## Technical Debt Map
+
+```mermaid
+graph TD
+    Technical_Debt["Technical Debt"]
+
+    Legacy_Components["Legacy Components"]
+    Documentation_Gaps["Documentation Gaps"]
+    Inflexible_Architecture["Inflexible Architecture"]
+
+    Technical_Debt --> Legacy_Components
+    Technical_Debt --> Documentation_Gaps
+    Technical_Debt --> Inflexible_Architecture
+```
+
 
 ## Motivation
 
 Documenting risks and technical debt ensures that known challenges are visible to all stakeholders. By addressing these issues proactively, the Death Star’s architecture can be better prepared to maintain reliability, security, and adaptability in future missions.
+
+> This technical debt register focuses on structural and systemic issues rather than minor implementation-level concerns. It is maintained as part of the Death Star’s long-term architecture governance, overseen by the Galactic Empire’s Technical Command.

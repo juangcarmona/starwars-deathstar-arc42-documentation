@@ -19,9 +19,31 @@ La Vista de Bloques de Construcción proporciona una descomposición estática d
    - *Regulación de Atmósfera*: Controla el oxígeno y otras condiciones atmosféricas.
    - *Protocolos de Emergencia*: Se activan en caso de riesgos a bordo.
 
-## Diagrama
+## Diagrama de Bloques de Construcción
 
-> **TODO:** _(Incluir un diagrama jerárquico que muestre estos componentes de alto nivel y sus subcomponentes para dar una representación visual de la arquitectura de la Estrella de la Muerte.)_
+El siguiente diagrama muestra la descomposición jerárquica de la Estrella de la Muerte en sus principales bloques de construcción y sus subcomponentes.
+
+```mermaid
+graph TD
+    Estrella_Muerte["Estrella de la Muerte"]
+
+    Estrella_Muerte --> Superlaser["Sistema de Superláser"]
+    Superlaser --> Modulo_Punteria["Módulo de Puntería"]
+    Superlaser --> Amplificador_Energia["Amplificador de Energía"]
+
+    Estrella_Muerte --> Reactor_Central["Núcleo del Reactor"]
+    Reactor_Central --> Distribucion_Energia["Unidad de Distribución de Energía"]
+    Reactor_Central --> Sistema_Enfriamiento["Sistema de Enfriamiento"]
+
+    Estrella_Muerte --> Comando_Control["Comando y Control"]
+    Comando_Control --> Matriz_Comunicaciones["Matriz de Comunicaciones"]
+    Comando_Control --> Centro_Control["Centro de Control"]
+
+    Estrella_Muerte --> Soporte_Vital["Sistema de Soporte Vital"]
+    Soporte_Vital --> Regulacion_Atmosfera["Regulación de Atmósfera"]
+    Soporte_Vital --> Protocolos_Emergencia["Protocolos de Emergencia"]
+
+```
 
 ## Motivación
 

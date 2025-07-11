@@ -10,7 +10,9 @@ Esta sección documenta las decisiones arquitectónicas críticas que han dado f
    - **Contexto**: La Estrella de la Muerte requiere una gran cantidad de energía para alimentar su superláser.
    - **Opciones**: Varios reactores pequeños frente a un reactor centralizado único.
    - **Decisión**: Utilizar un **único reactor central** para optimizar la gestión y amplificación de energía para el superláser.
-   - **Razonamiento**: Un solo reactor permite un **control energético eficiente**, aunque **introduce riesgos** si no se asegura y protege adecuadamente.
+   - **Razonamiento**: Un solo reactor permite un control eficiente de la energía y simplifica la integración de sistemas. Sin embargo, **introduce un único punto crítico de fallo**: si el reactor es comprometido, toda la estación queda inoperativa.
+
+> ⚠️ Este riesgo se analiza explícitamente en la Sección 11: [Riesgos y Deuda Técnica](./11_riesgos_y_deuda_tecnica.md).
 
 2. **Diseño Modular para Sistemas de Armamento y Soporte Vital**:
    - **Contexto**: La necesidad de aislar sistemas de alto riesgo, como el armamento, y sistemas críticos, como el soporte vital.
@@ -30,10 +32,31 @@ Esta sección documenta las decisiones arquitectónicas críticas que han dado f
    - **Decisión**: Utilizar un sistema automatizado para detectar y responder a intentos de acceso no autorizado.
    - **Razonamiento**: La automatización permite tiempos de respuesta más rápidos, reduciendo el riesgo de amenazas internas y externas.
 
-## Diagrama
 
-> **TODO:** _(Incluir diagramas si corresponde para visualizar el impacto de estas decisiones arquitectónicas en el diseño del sistema.)_
+
+
+
+### Tabla Resumen de Decisiones
+| ID | Título de la Decisión                         | Estado | Nivel de Impacto | Sistemas Afectados                       |
+| -- | --------------------------------------------- | ------ | ---------------- | ---------------------------------------- |
+| 1  | Reactor Centralizado                          | Activa | Crítico          | Núcleo del Reactor                       |
+| 2  | Diseño Modular para Armas y Soporte Vital     | Activa | Alto             | Sistemas de Armas, Soporte Vital         |
+| 3  | Protocolo de Comunicaciones Seguras           | Activa | Alto             | Matriz de Comunicaciones                 |
+| 4  | Sistema Automatizado de Detección de Intrusos | Activa | Medio            | Sistemas de Monitoreo, Comando y Control |
+
+
 
 ## Motivación
 
 Documentar estas decisiones arquitectónicas proporciona una comprensión clara de las elecciones que guían la estructura y funcionalidad de la Estrella de la Muerte. Esta documentación garantiza la continuidad en el diseño e informa el desarrollo o las modificaciones futuras para mantener la alineación con los objetivos iniciales.
+
+## NOTA SOBRE ADR:
+
+Las decisiones documentadas aquí siguen el formato **Architectural Decision Record (ADR)**, una práctica formalizada dentro de la doctrina técnica del Imperio Galáctico.
+
+Históricamente, los ADR han sido esenciales para mantener la continuidad en los proyectos de ingeniería imperial, desde la Estrella de la Muerte hasta los sistemas de escudos planetarios en Scarif y Hoth.
+
+Para más información sobre ADR:
+
+- [Michael Nygard – Documenting Architecture Decisions](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions.html)  
+- [Repositorio de Plantillas ADR en GitHub](https://github.com/joelparkerhenderson/architecture-decision-record)
