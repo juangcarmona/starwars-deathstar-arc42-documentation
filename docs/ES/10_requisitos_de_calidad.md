@@ -28,9 +28,56 @@ Esta sección detalla los requisitos de calidad principales para la arquitectura
    - **Resultado Esperado**: La distribución de energía se equilibra, priorizando los sistemas críticos para la misión.
    - **Métrica**: El uso de energía se mantiene dentro de los umbrales operativos, evitando sobrecargas en el sistema.
 
-## Diagrama
+## Diagrama de Árbol de Calidad
 
-> **TODO:** _(Incluir diagramas de árbol de calidad o tablas que representen estos objetivos y escenarios para mayor claridad visual.)_
+El siguiente diagrama ilustra la relación entre los objetivos de calidad de la Estrella de la Muerte y los escenarios clave asociados:
+
+```mermaid
+graph TD
+    Calidad["Requisitos de Calidad"]
+
+    Confiabilidad["Confiabilidad Operativa"]
+    Seguridad["Seguridad"]
+    Eficiencia_Energetica["Eficiencia Energética"]
+    Escalabilidad["Escalabilidad"]
+
+    Escenario1["Escenario: Estabilidad del Reactor"]
+    Escenario2["Escenario: Defensa ante Accesos No Autorizados"]
+    Escenario3["Escenario: Gestión de Energía"]
+
+    Calidad --> Confiabilidad
+    Calidad --> Seguridad
+    Calidad --> Eficiencia_Energetica
+    Calidad --> Escalabilidad
+
+    Confiabilidad --> Escenario1
+    Seguridad --> Escenario2
+    Eficiencia_Energetica --> Escenario3
+```
+
+## Diagrama de Impacto de Escenarios de Calidad en Sistemas
+
+El siguiente diagrama muestra qué sistemas están directamente involucrados en el soporte de cada escenario de calidad:
+
+```mermaid
+graph LR
+    Escenario1["Estabilidad del Reactor<br><i>Relacionado: Confiabilidad Operativa</i>"]
+    Escenario2["Acceso No Autorizado<br><i>Relacionado: Seguridad</i>"]
+    Escenario3["Gestión de Energía<br><i>Relacionado: Eficiencia Energética</i>"]
+
+    Reactor_Central["Núcleo del Reactor"]
+    Sistemas_Enfriamiento["Sistemas de Enfriamiento"]
+    Sistemas_Monitoreo["Sistemas de Monitoreo"]
+    Comando_Control["Comando y Control"]
+
+    Escenario1 --> Reactor_Central
+    Escenario1 --> Sistemas_Enfriamiento
+    Escenario2 --> Sistemas_Monitoreo
+    Escenario2 --> Comando_Control
+    Escenario3 --> Reactor_Central
+    Escenario3 --> Sistemas_Enfriamiento
+```
+
 
 ## Motivación
 

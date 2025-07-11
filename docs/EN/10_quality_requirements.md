@@ -28,9 +28,55 @@ This section outlines the primary quality requirements for the Death Star’s ar
    - **Expected Outcome**: Power distribution is balanced, with priority given to mission-critical systems.
    - **Metric**: Energy usage remains within operational thresholds, avoiding any system overloads.
 
-## Diagram
+## Quality Tree Diagram
 
-> **TODO:** _(Include quality tree diagrams or tables that represent these goals and scenarios for visual clarity.)_
+The following diagram illustrates the relationship between the Death Star’s quality goals and the key quality scenarios:
+
+```mermaid
+graph TD
+    Calidad["Quality Requirements"]
+
+    Reliability["Operational Reliability"]
+    Security["Security"]
+    Power_Efficiency["Efficient Power Usage"]
+    Scalability["Scalability"]
+
+    Escenario1["Scenario: Reactor Stability"]
+    Escenario2["Scenario: Unauthorized Access Defense"]
+    Escenario3["Scenario: Power Management"]
+
+    Calidad --> Reliability
+    Calidad --> Security
+    Calidad --> Power_Efficiency
+    Calidad --> Scalability
+
+    Reliability --> Escenario1
+    Security --> Escenario2
+    Power_Efficiency --> Escenario3
+```
+
+## Quality Scenario/System Impact Diagram
+
+The following diagram shows which systems are directly involved in supporting each quality scenario:
+
+```mermaid
+graph LR
+    Scenario1["Reactor Stability<br><i>Supports: Operational Reliability</i>"]
+    Scenario2["Unauthorized Access<br><i>Supports: Security</i>"]
+    Scenario3["Power Management<br><i>Supports: Efficient Power Usage</i>"]
+
+    Reactor_Core["Reactor Core"]
+    Cooling_Systems["Cooling Systems"]
+    Monitoring_Systems["Monitoring Systems"]
+    Command_Control["Command and Control"]
+
+    Scenario1 --> Reactor_Core
+    Scenario1 --> Cooling_Systems
+    Scenario2 --> Monitoring_Systems
+    Scenario2 --> Command_Control
+    Scenario3 --> Reactor_Core
+    Scenario3 --> Cooling_Systems
+```
 
 ## Motivation
 
