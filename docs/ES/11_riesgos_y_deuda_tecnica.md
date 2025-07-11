@@ -22,16 +22,41 @@ Esta sección detalla los riesgos conocidos y la deuda técnica dentro de la arq
    - **Descripción**: Con múltiples subsistemas operando simultáneamente, los desafíos de sincronización de datos podrían llevar a discrepancias que afecten la toma de decisiones.
    - **Mitigación**: Probar regularmente los protocolos de sincronización de datos y emplear mecanismos de redundancia para asegurar la integridad de los datos en todos los sistemas.
 
+### Risk Summary Table
+| ID | Título del Riesgo                         | Nivel de Impacto | Sistemas Afectados                 | Estrategia de Mitigación                        |
+| -- | ----------------------------------------- | ---------------- | ---------------------------------- | ----------------------------------------------- |
+| R1 | Vulnerabilidad del Núcleo del Reactor     | 🔴 Crítico       | Núcleo del Reactor                 | Blindaje reforzado y compartimentación          |
+| R2 | Potencial de Acceso No Autorizado         | 🟠 Alto          | Sistemas de Seguridad              | Auditorías regulares y monitoreo en tiempo real |
+| R3 | Sobrecarga en Operaciones de Alta Energía | 🟠 Alto          | Sistema de Distribución de Energía | Protocolo de priorización energética            |
+| R4 | Problemas de Sincronización de Datos      | 🟡 Medio         | Servicios de Datos                 | Pruebas periódicas y mecanismos de redundancia  |
+
 ## Deuda Técnica
 
-1. **Componentes Antiguos**: Algunos subsistemas se basan en tecnología obsoleta, lo que complica su integración con módulos más nuevos y podría afectar el rendimiento.
-2. **Lagunas en Documentación**: La documentación incompleta en ciertas áreas dificulta las actualizaciones del sistema y la resolución de problemas para los equipos de ingeniería.
-3. **Arquitectura Inflexible**: La estructura rígida de algunos módulos limita la capacidad de modificar o expandir ciertas capacidades sin rediseños importantes.
+Se han identificado las siguientes áreas estructurales de deuda técnica:
 
-## Diagrama
+| ID | Categoría | Descripción | Nivel de Impacto | Acción Sugerida |
+|-----|--------------------------|------------------------------------------------------------------------------------|------------------------|--------------------------------------------------------------------|
+| TD1 | Componentes Heredados | Los subsistemas antiguos complican la integración y reducen el rendimiento | 🟠 Alto | Planificar la refactorización y el reemplazo por fases |
+| TD2 | Brechas en la Documentación | La documentación incompleta u obsoleta ralentiza el mantenimiento y la incorporación | 🟡 Medio | Establecer ciclos de revisión de la documentación |
+| TD3 | Arquitectura Inflexible | Las estructuras modulares rígidas limitan la escalabilidad y la adaptabilidad | 🟠 Alto | Rediseñar módulos críticos para lograr modularidad |
 
-> **TODO:** _(Incluir una tabla o diagrama que resuma los riesgos, su impacto potencial y las estrategias de mitigación.)_
+## Mapa de Deuda Técnica
+
+```mermaid
+graph TD
+    Technical_Debt["Deuda Técnica"]
+
+    Legacy_Components["Componentes Heredados"]
+    Documentation_Gaps["Brechas de Documentación"]
+    Inflexible_Architecture["Arquitectura Inflexible"]
+
+    Technical_Debt --> Legacy_Components
+    Technical_Debt --> Documentation_Gaps
+    Technical_Debt --> Inflexible_Architecture
+```
 
 ## Motivación
 
 Documentar los riesgos y la deuda técnica garantiza que los desafíos conocidos sean visibles para todas las partes interesadas. Al abordar estos problemas de manera proactiva, la arquitectura de la Estrella de la Muerte puede estar mejor preparada para mantener la confiabilidad, seguridad y adaptabilidad en misiones futuras.
+
+> Este registro de deuda técnica se centra en problemas estructurales y sistémicos, en lugar de problemas menores de implementación. Se mantiene como parte de la gobernanza de la arquitectura a largo plazo de la Estrella de la Muerte, supervisada por el Comando Técnico del Imperio Galáctico.
