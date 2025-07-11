@@ -10,6 +10,9 @@ The Death Star operates in several distinct environments to ensure efficiency, s
 - **Development**: Used by engineers to test and update systems before deployment.
 - **Testing**: Isolated environment for rigorous testing to avoid impacting operational systems.
 - **Production**: The main operational environment where all systems are active and ready for Imperial command.
+> **Note:**  
+> Development, Testing, and Production environments share the same physical datacenter. Isolation is enforced through logical separation, not separate hardware installations.
+
 
 ## Key Infrastructure Components
 
@@ -27,7 +30,37 @@ The Death Star's internal network is organized to ensure secure and efficient da
 
 ### Diagram
 
-> **TODO:** _(Include a deployment diagram showing the layout of key infrastructure components and network connections.)_
+```mermaid
+graph TD
+    %% Main environments
+    subgraph Production_Env["Production Environment"]
+        subgraph Death_Star["Death Star Core Systems"]
+            Central_Reactor["Central Reactor Core<br><i>Energy for all systems</i>"]
+            Data_Centers["Data Centers<br><i>Distributed sectors</i>"]
+            Comm_Arrays["Communication Arrays<br><i>External transmission</i>"]
+            Security_Nodes["Security Control Nodes<br><i>Access and monitoring</i>"]
+        end
+    end
+
+    subgraph Testing_Env["Testing Environment"]
+        Test_Systems["Isolated Test Systems"]
+    end
+
+    subgraph Development_Env["Development Environment"]
+        Dev_Systems["Development Systems"]
+    end
+
+    %% Network Topologies
+    Central_Reactor -->|Command Network| Data_Centers
+    Data_Centers -->|Command Network| Comm_Arrays
+    Data_Centers -->|Security Network| Security_Nodes
+    Comm_Arrays -->|Communication Network| Imperial_Command["Imperial Command<br><i>External HQ</i>"]
+
+    %% Cross-environment relationships
+    Dev_Systems -- Development Pipelines --> Data_Centers
+    Test_Systems -- Testing Pipelines --> Data_Centers
+
+```
 
 ## Motivation
 

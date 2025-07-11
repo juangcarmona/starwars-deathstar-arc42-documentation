@@ -10,6 +10,9 @@ La Estrella de la Muerte opera en varios entornos distintos para garantizar efic
 - **Desarrollo**: Utilizado por ingenieros para probar y actualizar sistemas antes del despliegue.
 - **Pruebas**: Entorno aislado para pruebas rigurosas sin afectar los sistemas operativos.
 - **Producción**: El entorno operativo principal donde todos los sistemas están activos y listos para el mando imperial.
+> **Nota:**  
+> Los entornos de Desarrollo, Pruebas y Producción comparten el mismo centro de datos físico. La separación se garantiza de forma lógica, no mediante instalaciones de hardware independientes.
+
 
 ## Componentes Clave de Infraestructura
 
@@ -27,7 +30,39 @@ La red interna de la Estrella de la Muerte está organizada para garantizar un f
 
 ### Diagrama
 
-> **TODO:** _(Incluir un diagrama de despliegue que muestre la disposición de los componentes clave de infraestructura y las conexiones de red.)_
+
+```mermaid
+graph TD
+    %% Entornos principales
+    subgraph Entorno_Produccion["Entorno de Producción"]
+        subgraph Estrella_Muerte["Sistemas Principales de la Estrella de la Muerte"]
+            Reactor_Central["Núcleo del Reactor Central<br><i>Energía para todos los sistemas</i>"]
+            Centros_Datos["Centros de Datos<br><i>Distribuidos por sectores</i>"]
+            Matrices_Comunicacion["Matrices de Comunicación<br><i>Transmisión externa</i>"]
+            Nodos_Seguridad["Nodos de Control de Seguridad<br><i>Acceso y monitorización</i>"]
+        end
+    end
+
+    subgraph Entorno_Pruebas["Entorno de Pruebas"]
+        Sistemas_Pruebas["Sistemas de Pruebas Aislados"]
+    end
+
+    subgraph Entorno_Desarrollo["Entorno de Desarrollo"]
+        Sistemas_Desarrollo["Sistemas de Desarrollo"]
+    end
+
+    %% Topología de red
+    Reactor_Central -->|Red de Comando| Centros_Datos
+    Centros_Datos -->|Red de Comando| Matrices_Comunicacion
+    Centros_Datos -->|Red de Seguridad| Nodos_Seguridad
+    Matrices_Comunicacion -->|Red de Comunicaciones| Comando_Imperial["Comando Imperial<br><i>Sede externa</i>"]
+
+    %% Relación entre entornos
+    Sistemas_Desarrollo -- "Pipelines de Desarrollo" --> Centros_Datos
+    Sistemas_Pruebas -- "Pipelines de Pruebas" --> Centros_Datos
+
+
+```
 
 ## Motivación
 
